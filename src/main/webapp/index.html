@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="bgmsApp">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8"/>
+
+    <link rel="stylesheet" type="text/css" href="resources/css/lib/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="resources/css/bgms.css">
+
+    <script src="resources/js/lib/jquery.min.js"></script>
+    <script src="resources/js/lib/angular.js"></script>
+    <script src="resources/js/lib/angular-route.js"></script>
+    <script src="resources/js/lib/bootstrap.min.js"></script>
+    <script src="resources/js/lib/ui-bootstrap-tpls.js"></script>
+
+    <script src="resources/js/app.js"></script>
+    <script src="resources/js/controller.js"></script>
+    <script src="resources/js/services.js"></script>
+    <title>Bank Guarantee Management System</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <ng-form name="bgmsForm">
+                <div class="col-xs-offset-1 col-xs-10">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="row ">
+                                <!-- header image -->
+                                <div class="page-header">
+                                    <h1>BGMS</h1>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <nav class="navbar navbar-default navbar-static-top">
+                                    <div class="container-fluid">
+                                        <ul class="nav navbar-nav">
+                                            <li><a class="navbar-brand" href="/">Home</a></li>
+                                           <li><a href="/contractRegistration">Contract Registration</a></li>
+                                           <li><a href="/bankRegistration">Bank Registration</a></li>
+                                           <li><a href="/contractorRegistration">Contractor Registration</a></li>
+                                           <li><a href="/executor">Executor</a></li>
+                                           <li><a href="/logout">Logout</a></li>
+                                        </ul>
+                                    </div>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="row" ng-view></div>
+                        </div>
+                    </div>
+                    <div class="footer">
+
+                    </div>
+                </div>
+                <div class="col-xs-1"></div>
+            </ng-form>
+        </div>
+    </div>
+</body>
+</html>

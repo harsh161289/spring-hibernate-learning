@@ -1,0 +1,60 @@
+.page-header {
+    border-bottom: none;
+}
+
+.navbar {
+    margin-bottom: 20px;
+}
+
+.navbar-default {
+    background-color: #337ab7;
+    border-color: #337ab7;
+}
+.navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
+    margin-left: 0px;
+}
+
+.navbar-default .navbar-brand, .navbar-default .navbar-nav > li > a {
+    color: #fff;
+    font-weight: 400;
+    font-size:  20px;
+}
+.navbar-nav > li:hover, .navbar-nav > li:focus {
+    background-color: lightseagreen;
+}
+.table-wrapper {
+    overflow: auto;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.cursor-default {
+    cursor: default;
+}
+
+.bottom {
+    margin-bottom: 20px;
+}
+
+table > thead > tr > th, table > tbody > tr > td {
+    min-width: 150px;
+}
+table > thead > tr > th:nth-child(1),
+table > thead > tr > th:nth-child(2),
+table > thead > tr > th:nth-child(4),
+table > thead > tr > th:nth-child(5),
+table > thead > tr > th:nth-child(6),
+table > tbody > tr > td:nth-child(1),
+table > tbody > tr > td:nth-child(2),
+table > tbody > tr > td:nth-child(4),
+table > tbody > tr > td:nth-child(5),
+table > tbody > tr > td:nth-child(6) {
+    min-width: 100px;
+}
+
+.form-inline .form-group {
+    margin-left: 10px;
+    margin-right: 10px;
+}
