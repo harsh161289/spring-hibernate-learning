@@ -1,0 +1,42 @@
+<style type="text/css">
+.main .cols .col {
+    float: left;
+    margin: 90px 50px 50px 308px;
+    width: auto;
+}
+
+.bank-registration-form tbody td {
+    padding: 10px;
+}
+</style>
+
+<form action="bankRegistration.do" method="post">
+<table class="bank-registration-form">
+	
+	#if($result.errorMessage)
+	<tr>
+		<td colspan="2" style="color: red; font-size: 15px;">$result.errorMessage</td>
+	</tr>
+	#end	
+	<input type="hidden" name="_csrf" value="$result.csrfValue" />
+	<tr>
+		<td><label>Bank Name: </label><label style="color: red;">*</label></td><td><input type="text" name="bankName" /></td>
+	</tr>
+	<tr>
+		<td><label>Branch: </label><label style="color: red;">*</label></td><td><input type="text" name="branch" /></td>
+	</tr>	 
+	<tr>
+		<td><label>City: </label><label style="color: red;">*</label></td><td><input type="text" name="city" /></td>
+	</tr>
+	<tr>
+		<td><label>State: </label><label style="color: red;">*</label></td><td><input type="text" name="state" /></td>
+	</tr>
+	<tr>
+		<td><label>IFSC Number: </label><label style="color: red;">*</label></td><td><input type="text" name="ifscNumber" /></td>
+	</tr>
+	
+	<tr>
+		<td colspan=""><input type="submit" value="Submit"/></td><td><input type="reset" value="reset"></td>
+	</tr>
+</table>
+</form>

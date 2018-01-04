@@ -1,0 +1,53 @@
+<style type="text/css">
+.main .cols .col {
+    float: left;
+    margin: 110px 50px 50px 308px;
+    width: auto;
+}
+
+.executer-registration-form tbody td {
+    padding: 10px;
+}
+
+select#role option{
+	font-size: 14px;
+}
+</style>
+<form action="executerRegistration.do" method="post">
+<table class="executer-registration-form">
+	
+	
+	#if($result.successMessage)
+	<tr>
+		<td colspan="2" style="color: red; font-size: 15px;">$result.successMessage</td>
+	</tr>
+	#end
+	#if($result.errorMessage)
+	<tr>
+		<td colspan="2" style="color: red; font-size: 15px;">$result.errorMessage</td>
+	</tr>
+	#end	
+	<input type="hidden" name="_csrf" value="$result.csrfValue" />
+	<tr>
+		<td><label>UserName: </label></td><td><input type="text" name="userId" /></td>
+	</tr>	 
+	<tr>
+		<td><label>Password: </label></td><td><input type="password" name="password" /></td>
+	</tr>
+	<tr>
+		<td><label>Confirm Password: </label></td><td><input type="password" name="confirmPassword" /></td>
+	</tr>
+	<tr>
+		<td><label>Role: </label></td>
+		<td>
+		<select id="role" name="role" style="width: 166px; height: 24px;">
+			<option value=""></options>
+			<option value="BGMS_EXECUTER">EXECUTER</options>
+			<option value="BGMS_ADMIN">ADMIN</options>
+		</select></td>
+	</tr>
+	<tr>
+		<td colspan="2"><input type="submit" value="Submit"/></td>
+	</tr>
+</table>
+</form>

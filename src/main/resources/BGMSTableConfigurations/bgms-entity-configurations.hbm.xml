@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping>
+	<class name="com.anksys.bgms.model.BGMSUser" table="BGMS_USER">
+		<id name="id" column="USERID" type="integer">
+			<generator class="identity"></generator>
+		</id>
+		<property name="userName" column="USERNAME" type="string" unique="true"></property>
+		<property name="password" column="PASSWORD" type="string" ></property>
+		<property name="enabled" type="boolean">
+            <column name="ENABLED" not-null="true" />
+        </property>
+		<property name="role" column="USER_ROLE">
+			<type name="org.hibernate.type.EnumType">
+				<param name="enumClass">com.anksys.bgms.model.BGMSRole</param>
+				<param name="type">12</param>
+			</type>
+		</property>
+	</class>
+	
+<class name="com.anksys.bgms.model.Contractor" table="BGMS_CONTRACTOR" lazy="false">
+		<id name="contractorId" column="CONTRACTOR_ID" type="long">
+			<generator class="identity"></generator>
+		</id>
+		<property name="contractorName" column="CONTRACTOR_NAME" type="string" not-null="true"></property>
+		<property name="emailId" column="EMAIL_ID" type="string" unique="true" not-null="true"></property>
+		<property name="contactNumber" column="CONTACT_NUMBER" type="string" not-null="false"></property>
+		<property name="alternateNumber" column="ALTERNATE_NUMBER" type="string" not-null="false"></property>
+		<property name="address" column="address" type="string" not-null="false"></property>
+		<property name="city" column="city" type="string" not-null="false"></property>
+		<property name="state" column="state" type="string" not-null="false"></property>
+		
+		<set name="contracts" table="BGMS_CONTRACT" inverse="true" fetch="join">
+			<key>
+				<column name="CONTRACT_ID" not-null="true"></column>
+			</key>
+			<one-to-many class="com.anksys.bgms.model.Contract"/>
+		</set>
+</class>
+<class name="com.anksys.bgms.model.Bank" table="BGMS_BANK" lazy="false">
+		<id name="bankId" column="BANK_ID" type="long">
+			<generator class="identity"></generator>
+		</id>
+		<property name="bankName" column="BANK_NAME" type="string"></property>
+		<property name="branch" column="BANK_BRANCH" type="string"></property>
+		<property name="city" column="CITY" type="string"></property>
+		<property name="state" column="STATE" type="string"></property>
+		<property name="ifscNumber" column="IFSC_CODE" type="string" unique="true"></property>
+		<set name="contracts" table="BGMS_CONTRACT" fetch="join">
+			<key>
+				<column name="CONTRACT_ID" not-null="true"></column>
+			</key>
+			<one-to-many class="com.anksys.bgms.model.Contract"/>
+		</set>
+</class>
+	
+<class name="com.anksys.bgms.model.Contract" table="BGMS_CONTRACT" dynamic-update="true" select-before-update="true">
+		<id name="contractId" column="CONTRACT_ID" type="string"></id>
+		<property name="gaurateeAmount" column="GUARANTEE_AMOUNT" type="string"></property>
+		<property name="validFrom" column="VALID_FROM"></property>
+		<property name="validUpto" column="VALID_UPTO"></property>
+		<property name="extendedUpto" column="EXTENDED_UPTO"></property>
+		<property name="extensionNoticeDate" column="EXTENSION_NOTICE_DATE"></property>
+		<property name="encashmentNoticeDate" column="ENCHASMENT_NOTICE_DATE"></property>
+		<many-to-one name="contractor" class="com.anksys.bgms.model.Contractor" column="contractor_id" fetch="join"></many-to-one>
+		<many-to-one name="bank" class="com.anksys.bgms.model.Bank" column="bank_id" fetch="join"></many-to-one>
+</class>
+</hibernate-mapping>
+
+     

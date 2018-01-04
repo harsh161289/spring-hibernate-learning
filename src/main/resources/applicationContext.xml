@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+
+	<bean id="bank" class="com.anksys.bgms.model.Bank"></bean>
+	<bean id="contractor" class="com.anksys.bgms.model.Contractor"></bean>
+	
+	<bean id="bgmsService" class="com.anksys.bgms.service.BGMSServiceImpl">
+		<property name="bgmsDao" ref="bgmsDao"></property>
+	</bean>
+	
+	<bean name="bgmsDao" class="com.anksys.bgms.dao.BGMSDaoImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+		<property name="encodeDecode" ref="encodeDecode"></property>
+	</bean>
+
+	<bean id="encodeDecode" class="com.anksys.bgms.security.EncodeDecode"></bean>
+
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<property name="sessionFactory" ref="sessionBean"></property>
+	</bean>
+
+	<bean id="sessionBean"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSourceBean"></property>
+		<property name="mappingResources">
+			<list>
+				<value>/BGMSTableConfigurations/bgms-entity-configurations.hbm.xml</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="dataSourceBean"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+		<property name="url" value="jdbc:mysql://localhost/anksys-bgms"></property>
+		<property name="username" value="root"></property>
+		<property name="password" value="root"></property>
+	</bean>
+	
+	
+	<bean name="bgmsUserService" class="com.anksys.bgms.service.BGMSUserService">
+		<property name="bgmsDao" ref="bgmsDao"></property>
+	</bean>
+
+
+</beans>   

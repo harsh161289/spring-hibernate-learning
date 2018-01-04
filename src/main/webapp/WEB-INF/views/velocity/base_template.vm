@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html lang="en" style="-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0" />
+	<title>Bank Gaurantee Management System</title>
+	<link rel="shortcut icon" type="image/x-icon" href="/views/resource/css/images/favicon.ico" />
+	<link rel="stylesheet" href="$request.getContextPath()/resource/css/styles.css" type="text/css" media="all" />
+	<link rel="stylesheet" href="$request.getContextPath()/resource/css/style.css" type="text/css" media="all" />
+	<link rel="stylesheet" href="$request.getContextPath()/resource/css/flexslider.css" type="text/css" media="all" />
+	<link href='http://fonts.googleapis.com/css?family=Ubuntu:400,500,700' rel='stylesheet' type='text/css' />
+	
+	<!-- Date Picker -->
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+ 	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  	<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+	
+	<!-- Jqgrid -->
+	<script type="text/ecmascript" src="$request.getContextPath()/resource/js/trirand/jquery.jqGrid.min.js"></script>
+
+    <!-- This is the localization file of the grid controlling messages, labels, etc. -->
+
+    <!-- We support more than 40 localizations -->
+    <script type="text/ecmascript" src="$request.getContextPath()/resource/js/trirand/i18n/grid.locale-en.js"></script>
+    <script type="text/javascript" src="$request.getContextPath()/resource/js/jquery-dateFormat.min.js"></script>
+    <script type="text/javascript" src="$request.getContextPath()/resource/js/script.js"></script>
+	<script>
+		function formSubmit() {
+			document.getElementById("logoutForm").submit();
+		}
+	</script>
+    <!-- A link to a jQuery UI ThemeRoller theme, more than 22 built-in and many more custom -->
+    <link rel="stylesheet" type="text/css" media="screen" href="$request.getContextPath()/resource/css/jquery-ui.css" />
+
+    <!-- The link to the CSS that the grid needs -->
+    <link rel="stylesheet" type="text/css" media="screen" href="$request.getContextPath()/resource/css/trirand/ui.jqgrid.css" />
+	<!--[if lt IE 9]>
+		<script src="js/modernizr.custom.js"></script>
+	<![endif]-->
+
+</head>
+<body>
+	<!-- wraper -->
+	<div id="wrapper">
+		<!-- shell -->
+		<div class="shell">
+			<!-- container -->
+			<div class="container">
+				<!-- header -->
+				#include('template_header.vm')
+				<!-- end of header -->
+				<!-- navigation -->
+				#parse('template_navigation.vm')
+				<!-- end of navigation -->
+				<!-- slider -->
+				<!-- end of slider -->
+				<!-- main -->
+				<div class="main">
+					<a href="#" class="m-btn-grey grey-btn">request a demo</a>
+					<section class="cols">
+						<div class="col">
+							<form action="$request.getContextPath()/j_spring_security_logout" method="post" id="logoutForm">
+								<input type="hidden" name="_csrf" value="$result.csrfValue" />
+							</form>
+							$screen_content
+						</div>
+						<div class="cl">&nbsp;</div>
+					</section>
+				</div>
+				<!-- end of main -->
+				#parse('template_footer.vm')
+			</div>
+			<!-- end of container -->	
+		</div>
+		<!-- end of shell -->	
+	</div>
+	<!-- end of wrapper -->
+</body>
+</html>
