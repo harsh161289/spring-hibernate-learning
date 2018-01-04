@@ -1,0 +1,29 @@
+<style type="text/css">
+.main .cols .col {
+    float: left;
+    margin: 90px 0 50px;
+    width: auto;
+}
+.ui-jqgrid .ui-jqgrid-htable th{font-size: 14px;}
+.ui-jqgrid .ui-jqgrid-pager{font-size: 14px;}
+.ui-jqgrid .ui-jqgrid-htable th div{height: 30px;}
+.ui-jqgrid tr.jqgrow td{font-size:14px;}
+.ui-jqgrid tr.jqgrow .highlight-red{color: red;}
+.a-hyperlink{text-decoration: underline; color:blue;}
+</style>
+  
+    <div style="width: 100%; margin-bottom: 40px;">
+    	<form id="dateExtensionForm" name="dateExtensionForm" action="extendValidity.do" method="POST">
+    	#if($result.message)
+    		<div style="width: 100%;"><label style="font-size: 14px; color: red;">$result.message<label></div>
+    	#end
+    	<div style="width: 30%; float: left;"><label>Contract Id: </label><input type="text" id="contractId" name="contractId"></div>
+    	<div style="width: 33%; float: left;"><label>Extended Date: </label><input type="text" id="extendedDate" name="extendedDate"></div>
+    	<div style="width: 30%;"><div style="width: 30%; float: left;"><input type="submit" value="submit"/></div><div style="width: 50%;"><input type="reset"/></div></div>
+    	<div style="display: hidden; width: 100%"><input type="hidden" name="_csrf" value="$result.csrfValue" /></div>
+    	</form>
+    </div>
+    <div id="jqgrid-parent-div">
+   	 	<table id="jqGrid" style="margin-left: 1px;"></table>
+    	<div id="jqGridPager"></div>
+    </div>

@@ -1,0 +1,16 @@
+<div id='cssmenu'>
+<ul>
+   <li class='active'><a href='$request.getContextPath()/user/home.html'><span>Home</span></a></li>
+       
+   <li><a href='$request.getContextPath()/user/contractRegistrationPage.html'><span>Contract Reg.</span></a></li>
+   <li><a href='$request.getContextPath()/user/bankRegistrationPage.html'><span>Bank Reg.</span></a></li>
+   <li class='last'><a href='$request.getContextPath()/user/contractorRegistrationPage.html'><span>Contractor Reg.</span></a></li>
+
+   #set($roles = $authz.anyGranted("BGMS_ADMIN"))
+   	#if($roles)
+   		<li class='has-sub'><a href='$request.getContextPath()/user/executerRegistratioPage.html'><span>Executer</span></a></li>
+   	#end
+   	
+   <li class='last'><a href='javascript:formSubmit()'><span>Logout</span></a></li>
+</ul>
+</div>

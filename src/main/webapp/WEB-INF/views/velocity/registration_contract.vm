@@ -1,0 +1,86 @@
+<style type="text/css">
+.main .cols .col {
+    float: left;
+    margin: 80px 50px 50px 194px;
+    width: auto;
+}
+
+.contract-registration-form tbody td {padding: 10px;}
+.button{width : 100px;}
+input{width: 430px;}
+select{width: 430px;font-size : 15px;}
+
+</style>
+<script>
+	$(function() {
+			$( "#validFrom" ).datepicker();
+			$( "#validUpto" ).datepicker();
+			$( "#contractorName" ).autocomplete({
+				source: function( request, response ) {
+							$.ajax({
+								url: "/BGMS/user/getContractorListBasedOnSearch.json",
+								dataType: "json",
+								contentType: "application/json; charset=utf-8",
+								data: {
+										q: request.term
+									},
+								success: function( data ) {
+									//alert(data);
+									response( data );
+								}
+							});
+						},
+				minLength: 3,
+				open: function() {
+						$( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+						},
+				close: function() {
+						$( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+						}
+				});
+			});
+	
+</script>
+
+<form action="contractRegistration.do" method="POST">
+<table class="contract-registration-form">
+	<input type="hidden" name="_csrf" value="$result.csrfValue" />
+	#if($result.message)
+	<tr>
+		<td colspan="2" style="color: red; font-size: 15px;">$result.message</td>
+	</tr>
+	#end	
+	<tr>
+		<td><label>Contract Id: </label><label style="color: red;">*</label></td><td><input id="contractId" type="text" name="contractId" /></td>
+	</tr>
+	<tr>
+		<td><label>Contractor Name:</label><label style="color: red;">*</label></td>
+		<td><input type="text" id="contractorName" name="contractorName"/></td>
+	</tr>	 
+	<tr>
+		<td><label>Bank Name: </label><label style="color: red;">*</label></td>
+		<td>
+			#set($bankList = $result.bankList)
+			<select id="bankId" name="bankId">
+				<option value=""></option>
+				#foreach($bank in $bankList)
+					<option value="${bank.getBankId()}">$bank.getBankName() - $bank.getBranch() - $bank.getIfscNumber()</option>
+				#end
+			</select>	
+		</td>
+	</tr>
+	<tr>
+		<td><label>Guarantee Amount: </label><label style="color: red;">*</label></td><td><input type="text" id="gaurateeAmount" name="gaurateeAmount" /></td>
+	</tr>
+	<tr>
+		<td><label>Valid From: </label><label style="color: red;">*</label></td><td><input type="date" id="validFrom" name="validFrom" /></td>
+	</tr>
+	<tr>
+		<td><label>Valid Upto: </label><label style="color: red;">*</label></td><td><input type="date" id="validUpto" name="validUpto" /></td>
+	</tr>
+	
+	<tr>
+		<td colspan=""><input class="button" type="submit" value="Submit"/></td><td><input class="button" type="reset" value="reset"></td>
+	</tr>
+</table>
+</form>
